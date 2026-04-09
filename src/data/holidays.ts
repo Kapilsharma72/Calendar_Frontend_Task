@@ -1,10 +1,10 @@
 export interface Holiday {
   name: string;
-  month: number; // 0-indexed
-  day: number;   // 1-based
+  month: number;
+  day: number;
 }
 
-export type HolidayMap = Record<string, string>; // key: "YYYY-MM-DD", value: holiday name
+export type HolidayMap = Record<string, string>;
 
 export const US_FEDERAL_HOLIDAYS: Holiday[] = [
   { name: "New Year's Day",             month: 0,  day: 1  },

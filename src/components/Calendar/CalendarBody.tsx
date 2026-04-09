@@ -10,17 +10,6 @@ import { CalendarGrid } from './CalendarGrid';
 import { NotesSection } from './NotesSection';
 import { PersistenceWarning } from './PersistenceWarning';
 
-/* ─────────────────────────────────────────────
-   SPIRAL COIL BINDING
-   Each coil is a closed ring (like a keyring)
-   that threads through a horizontal rod.
-   The ring is drawn as a thick stroked ellipse.
-   The rod passes through the middle, so we draw:
-     1. bottom half of ring (behind rod)
-     2. the rod
-     3. top half of ring (in front of rod)
-   This gives the correct over/under weave.
-───────────────────────────────────────────── */
 function SpiralBinding() {
   const [coilCount, setCoilCount] = useState(32);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -30,9 +19,9 @@ function SpiralBinding() {
   const ROD_H = 6;
   const RX    = 8;
   const RY    = 16;
-  const SW    = 5.5;   // outer stroke — the dark "shadow" side of the tube
-  const SW2   = 3.0;   // mid stroke — the base wire color
-  const SW3   = 1.4;   // inner highlight stroke
+  const SW    = 5.5;
+  const SW2   = 3.0;
+  const SW3   = 1.4;
   const STEP  = 18;
 
   useEffect(() => {
@@ -77,40 +66,28 @@ function SpiralBinding() {
         preserveAspectRatio="xMidYMid meet"
         style={{ display: 'block', overflow: 'visible' }}
       >
-        {/* ── PASS 1: bottom arcs — 3 layers for tube depth ── */}
-        {/* Layer A: thick dark outer edge */}
         {Array.from({ length: coilCount }).map((_, i) => (
           <path key={`b0-${i}`} d={botArc(i * STEP + STEP / 2)}
             fill="none" stroke="#1a1a1a" strokeWidth={SW} strokeLinecap="round" opacity="0.45" />
         ))}
-        {/* Layer B: mid tone */}
         {Array.from({ length: coilCount }).map((_, i) => (
           <path key={`b1-${i}`} d={botArc(i * STEP + STEP / 2)}
             fill="none" stroke="#3d3d3d" strokeWidth={SW2} strokeLinecap="round" opacity="0.45" />
         ))}
 
-        {/* ── PASS 2: rod ── */}
-        {/* Rod dark base */}
         <rect x={0} y={ROD_Y - ROD_H / 2} width={W} height={ROD_H} rx={ROD_H / 2} fill="#2e2e2e" />
-        {/* Rod mid tone */}
         <rect x={0} y={ROD_Y - ROD_H / 2} width={W} height={ROD_H * 0.6} rx={ROD_H / 2} fill="#555" />
-        {/* Rod top highlight */}
         <rect x={0} y={ROD_Y - ROD_H / 2} width={W} height={ROD_H * 0.28} rx={ROD_H / 2} fill="rgba(255,255,255,0.22)" />
-        {/* Rod bottom shadow */}
         <rect x={0} y={ROD_Y + ROD_H / 2 - 1.5} width={W} height={1.5} rx={0.75} fill="rgba(0,0,0,0.40)" />
 
-        {/* ── PASS 3: top arcs — 3 layers for tube depth ── */}
-        {/* Layer A: thick dark outer edge (gives the shadow side of the tube) */}
         {Array.from({ length: coilCount }).map((_, i) => (
           <path key={`t0-${i}`} d={topArc(i * STEP + STEP / 2)}
             fill="none" stroke="#1a1a1a" strokeWidth={SW} strokeLinecap="round" />
         ))}
-        {/* Layer B: mid tone wire color */}
         {Array.from({ length: coilCount }).map((_, i) => (
           <path key={`t1-${i}`} d={topArc(i * STEP + STEP / 2)}
             fill="none" stroke="#505050" strokeWidth={SW2} strokeLinecap="round" />
         ))}
-        {/* Layer C: bright highlight on the lit side of the tube */}
         {Array.from({ length: coilCount }).map((_, i) => (
           <path key={`t2-${i}`} d={topHighlight(i * STEP + STEP / 2)}
             fill="none" stroke="rgba(210,210,210,0.55)" strokeWidth={SW3} strokeLinecap="round" />
@@ -120,9 +97,6 @@ function SpiralBinding() {
   );
 }
 
-/* ─────────────────────────────────────────────
-   HERO IMAGE — full-bleed with fade-in
-───────────────────────────────────────────── */
 function HeroImage({ month }: { month: number }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);

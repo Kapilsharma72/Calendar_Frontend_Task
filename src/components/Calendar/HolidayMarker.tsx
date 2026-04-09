@@ -8,13 +8,11 @@ export interface HolidayMarkerProps {
 export function HolidayMarker({ name, id }: HolidayMarkerProps) {
   return (
     <div className="relative group/tooltip">
-      {/* Holiday dot */}
       <span
         className="block w-1 h-1 rounded-full"
         style={{ backgroundColor: 'var(--color-accent)' }}
         aria-hidden="true"
       />
-      {/* Tooltip */}
       <div
         id={id}
         role="tooltip"
@@ -26,7 +24,6 @@ export function HolidayMarker({ name, id }: HolidayMarkerProps) {
         }}
       >
         {name}
-        {/* Tooltip arrow */}
         <span
           className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent"
           style={{ borderTopColor: 'var(--color-primary)' }}

@@ -20,9 +20,8 @@ export interface CalendarGridProps {
 
 export function CalendarGrid({ month, year, dateRange, hoverDay, holidays, onDayClick, onDayHover }: CalendarGridProps) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  // Convert Sun=0 to Mon=0 offset
-  const rawFirst = new Date(year, month, 1).getDay(); // 0=Sun
-  const firstDayOfWeek = rawFirst === 0 ? 6 : rawFirst - 1; // Mon=0 … Sun=6
+  const rawFirst = new Date(year, month, 1).getDay();
+  const firstDayOfWeek = rawFirst === 0 ? 6 : rawFirst - 1;
   const totalCells = Math.ceil((firstDayOfWeek + daysInMonth) / 7) * 7;
   const trailingEmpties = totalCells - firstDayOfWeek - daysInMonth;
 

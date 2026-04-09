@@ -11,7 +11,6 @@ export function getDayCellState(
 
   const { start, end } = dateRange;
 
-  // Single-day selection: start === end (end is not null)
   if (end !== null && start === end) {
     return day === start ? 'range-start-end' : 'default';
   }
@@ -24,7 +23,6 @@ export function getDayCellState(
     return 'default';
   }
 
-  // end is null — hover preview phase
   if (hoverDay !== null && hoverDay > start && day > start && day <= hoverDay) {
     return 'hover-preview';
   }

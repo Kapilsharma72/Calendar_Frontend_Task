@@ -105,7 +105,6 @@ export function DayCell({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {/* Hover circle */}
       {!isSolid && state !== 'in-range' && state !== 'hover-preview' && (
         <span
           className="absolute inset-[3px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-100"
@@ -114,7 +113,6 @@ export function DayCell({
         />
       )}
 
-      {/* Today ring */}
       {isToday && !isSolid && (
         <span
           className="absolute inset-[3px] rounded-full"
@@ -123,7 +121,6 @@ export function DayCell({
         />
       )}
 
-      {/* Day number */}
       <span
         className="cal-day-number relative z-10 leading-none"
         style={{
@@ -141,7 +138,6 @@ export function DayCell({
         {day}
       </span>
 
-      {/* Holiday dot */}
       {holiday && (
         <span className="absolute bottom-[3px] left-1/2 -translate-x-1/2 z-20">
           <HolidayMarker name={holiday} id={holidayId} />

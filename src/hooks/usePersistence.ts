@@ -12,7 +12,6 @@ export function usePersistence(
   state: CalendarState,
   dispatch: Dispatch<CalendarAction>
 ): void {
-  // On mount: read and hydrate from localStorage
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -22,7 +21,6 @@ export function usePersistence(
       try {
         data = JSON.parse(raw);
       } catch {
-        // Malformed JSON — silently discard
         return;
       }
 
@@ -31,14 +29,12 @@ export function usePersistence(
         data === null ||
         (data as PersistedCalendarData).version !== 1
       ) {
-        // Unknown version or wrong shape — silently discard
         return;
       }
 
       const persisted = data as PersistedCalendarData;
       const { isDark, monthNotes, rangeNotes, dateRanges } = persisted;
 
-      // Restore dateRange for the current month from the dateRanges map
       const key = monthKey(state.year, state.month);
       const storedRange = dateRanges?.[key] ?? null;
       const dateRange =
@@ -56,18 +52,14 @@ export function usePersistence(
         },
       });
     } catch {
-      // localStorage access threw (e.g. private browsing, security error)
       dispatch({ type: 'SET_PERSISTENCE_AVAILABLE', available: false });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // On state change (debounced): write to localStorage
   const debouncedState = useDebounce(state, 500);
 
   useEffect(() => {
     try {
-      // Build dateRanges map — only include ranges where end is not null
       const dateRanges: PersistedCalendarData['dateRanges'] = {};
       if (debouncedState.dateRange?.end !== null && debouncedState.dateRange !== null) {
         const key = monthKey(debouncedState.year, debouncedState.month);

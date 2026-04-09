@@ -11,7 +11,6 @@ export function calendarReducer(
       const { day } = action;
       const { dateRange } = state;
 
-      // Click existing start or end → clear range
       if (
         dateRange !== null &&
         (day === dateRange.start || day === dateRange.end)
@@ -19,23 +18,18 @@ export function calendarReducer(
         return { ...state, dateRange: null };
       }
 
-      // No range → set start, clear end
       if (dateRange === null) {
         return { ...state, dateRange: { start: day, end: null } };
       }
 
-      // Range has start but no end
       if (dateRange.end === null) {
         if (day >= dateRange.start) {
-          // Extend range to end
           return { ...state, dateRange: { start: dateRange.start, end: day } };
         } else {
-          // day < start → reset
           return { ...state, dateRange: { start: day, end: null } };
         }
       }
 
-      // Range is complete → start a new range
       return { ...state, dateRange: { start: day, end: null } };
     }
 

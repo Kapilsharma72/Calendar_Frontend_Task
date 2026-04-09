@@ -1,6 +1,5 @@
 'use client';
 
-// Mon-first order to match CalendarGrid's firstDayOfWeek calculation
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 export default function WeekdayHeaders() {

@@ -24,7 +24,6 @@ export function NoteInput({ label, value, onChange, minHeight }: NoteInputProps)
 
   useEffect(() => {
     if (value !== localValue) setLocalValue(value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (

@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react';
 
-/**
- * Returns true if the user has enabled the "reduce motion" accessibility setting.
- * Subscribes to changes so the value stays in sync at runtime.
- * Safe to use in SSR environments (returns false when window is unavailable).
- */
 export function useReducedMotion(): boolean {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;

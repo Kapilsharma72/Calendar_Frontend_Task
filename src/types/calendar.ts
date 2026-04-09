@@ -1,5 +1,5 @@
 export interface CalendarState {
-  month: number;           // 0-indexed (0 = January)
+  month: number;
   year: number;
   dateRange: DateRange | null;
   hoverDay: number | null;
@@ -11,18 +11,15 @@ export interface CalendarState {
 }
 
 export interface DateRange {
-  start: number; // day-of-month, 1-based
-  end: number | null; // null while only start is set
+  start: number;
+  end: number | null;
 }
 
 export type MonthNoteMap = Record<string, string>;
-// key format: "YYYY-MM"  e.g. "2025-01"
 
 export type RangeNoteMap = Record<string, string>;
-// key format: "YYYY-MM-DD:YYYY-MM-DD"  e.g. "2025-01-06:2025-01-10"
 
 export type DateRangeMap = Record<string, { start: number; end: number }>;
-// key: "YYYY-MM"
 
 export type DayCellState =
   | 'empty'
@@ -32,7 +29,7 @@ export type DayCellState =
   | 'in-range'
   | 'range-end'
   | 'hover-preview'
-  | 'range-start-end'; // start === end (single-day selection)
+  | 'range-start-end';
 
 export type CalendarAction =
   | { type: 'HYDRATE'; payload: Partial<CalendarState> }

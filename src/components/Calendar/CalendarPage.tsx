@@ -40,18 +40,12 @@ export function CalendarPage({ children }: CalendarPageProps) {
       className="min-h-screen wall-bg transition-colors duration-700"
       style={{ ...cssVars, color: 'var(--color-text)' }}
     >
-      {/* Screen-reader live region */}
       <div aria-live="polite" aria-atomic="true" className="sr-only">
         {announcement}
       </div>
 
-      {/* Wall scene — centered with generous padding */}
       <div className="min-h-screen flex items-start justify-center pt-16 pb-24 px-4 sm:px-8">
-
-        {/* Calendar hanging unit */}
-        <div
-          className="calendar-wrapper w-full sm:max-w-[680px]"
-        >
+        <div className="calendar-wrapper w-full sm:max-w-[680px]">
           {children}
         </div>
       </div>

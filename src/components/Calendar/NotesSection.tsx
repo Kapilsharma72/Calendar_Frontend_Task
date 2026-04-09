@@ -22,9 +22,7 @@ export function NotesSection({
 
   return (
     <div className="flex flex-col gap-3 h-full">
-      {/* Header */}
       <div className="flex items-center gap-1.5">
-        {/* Pencil icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="11"
@@ -49,7 +47,6 @@ export function NotesSection({
         </span>
       </div>
 
-      {/* Month note — lined paper textarea */}
       <div className="flex flex-col gap-0 flex-1">
         <label
           className="text-[9px] font-bold uppercase tracking-widest mb-1.5"
@@ -72,7 +69,6 @@ export function NotesSection({
         />
       </div>
 
-      {/* Range note — only shown when a range is selected */}
       {rangeNote !== null && (
         <div className="flex flex-col gap-1">
           <label
